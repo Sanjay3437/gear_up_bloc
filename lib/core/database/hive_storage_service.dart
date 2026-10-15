@@ -1,0 +1,122 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:gear_up_bloc/core/constants/constant.dart';
+import 'package:gear_up_bloc/core/database/storage_service.dart';
+import 'package:gear_up_bloc/shared/models/user_data.dart';
+import 'package:gear_up_bloc/core/database/secure_storage_service.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+/// HiveService
+///
+/// Implementation of StorageService using Hive NoSQL database.
+/// Now enhanced with 256-bit AES encryption via SecureStorageService.
+class HiveService implements StorageService {
+  static HiveService? _instance;
+  final SecureStorageService _secureStorage;
+  Box? box;
+
+  factory HiveService([SecureStorageService? secureStorage]) {
+    if (_instance != null) {
+      return _instance!;
+    }
+    _instance = HiveService._internal(secureStorage ?? SecureStorageService());
+    return _instance!;
+  }
+
+  HiveService._internal(this._secureStorage);
+
+  // Completer is used to wait for the box to open if it hasn't yet
+  final Completer<Box> initCompleter = Completer<Box>();
+
+  /// Initialize the database with encryption
+  @override
+  Future<void> init() async {
+    if (initCompleter.isCompleted) return;
+    await Hive.initFlutter();
+
+    // Get the encryption key from secure storage
+    final encryptionKey = await _secureStorage.getEncryptionKey();
+
+    // Open an encrypted box
+    final encryptedBox = await Hive.openBox(
+      hiveBoxName,
+      encryptionCipher: HiveAesCipher(encryptionKey),
+    );
+    box = encryptedBox;
+    initCompleter.complete(encryptedBox);
+  }
+
+  /// Check if database is ready
+  @override
+  bool get hasInitialized => initCompleter.isCompleted;
+
+  /// Synchronous getter for saved language code
+  String? getLanguage() {
+    if (box != null && box!.isOpen) {
+      return box!.get(languageDbKey)?.toString();
+    }
+    if (Hive.isBoxOpen(hiveBoxName)) {
+      return Hive.box(hiveBoxName).get(languageDbKey)?.toString();
+    }
+    return null;
+  }
+
+  /// Get a value by its key
+  @override
+  Future<Object?> get(String key) async {
+    box = await initCompleter.future;
+    return box?.get(key);
+  }
+
+  /// Clear all data (used during logout)
+  @override
+  Future<void> clear() async {
+    box = await initCompleter.future;
+    // Clearing specific fields or the whole box
+    await box?.put('user', {}.toString());
+    await box?.clear();
+  }
+
+  /// Check if a key exists
+  @override
+  Future<bool> has(String key) async {
+    box = await initCompleter.future;
+    return box?.containsKey(key) ?? false;
+  }
+
+  /// Remove a specific item
+  @override
+  Future<bool> remove(String key) async {
+    box = await initCompleter.future;
+    await box?.delete(key);
+    return true;
+  }
+
+  /// Save a value
+  @override
+  Future<bool> set(String key, data) async {
+    box = await initCompleter.future;
+    await box?.put(key, data.toString());
+    return true;
+  }
+
+  /// Helper to save the UserData object
+  /// We convert the object to JSON string because Hive stores simple types best.
+  @override
+  Future<bool> setUser(UserData data) async {
+    box = await initCompleter.future;
+    await box?.put(userDbKey, jsonEncode(data.toJson()));
+    return true;
+  }
+
+  /// Helper to get the UserData object
+  @override
+  Future<UserData> getUser() async {
+    Object? data = await box?.get(userDbKey);
+    dynamic userJson = jsonDecode(data.toString());
+    return UserData.fromJson(userJson);
+  }
+}
+
+/// Alias for HiveService for consistency with user request
+typedef HiveStorageService = HiveService;
