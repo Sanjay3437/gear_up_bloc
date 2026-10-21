@@ -278,4 +278,6 @@ class AppStrings {
   static String get selectLanguage => "SELECT_LANGUAGE".tr;
 
   static String get chooseLanguageSub => "CHOOSE_LANGUAGE_SUB".tr;
+
+
 }

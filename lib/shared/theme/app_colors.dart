@@ -1,68 +1,45 @@
 import 'package:flutter/material.dart';
 
-/// Professional color palette for the app - Fresh Green Theme
 class AppColors {
-  // Primary Colors - Fresh Green
-  static const Color colorPrimary = Color(0xFF22C55E);
-  static const Color colorPrimaryDark = Color(0xFF16A34A);
-  static const Color colorPrimaryLight = Color(0xFF4ADE80);
+  // Primary Racing Orange & Carbon Palette
+  static const Color colorPrimary = Color(0xFFFF5722); // Racing Orange
+  static const Color colorPrimaryDark = Color(0xFFE64A19);
+  static const Color colorPrimaryLight = Color(0xFFFF8A65);
+  static const Color colorSecondary = Color(0xFFFF9800); // Amber Accent
+  static const Color colorGreen = Color(0xFFFF5722); // Mapped to Racing Orange
 
-  // Secondary Colors - Soft Mint
-  static const Color colorSecondary = Color(0xFF0D9488);
-  static const Color colorSecondaryDark = Color(0xFF0F766E);
-  static const Color colorSecondaryLight = Color(0xFF14B8A6);
+  // Dark Mode / Carbon Backgrounds
+  static const Color appBackGround = Color(0xFF0F1115); // Deep Carbon Black
+  static const Color surfaceColor = Color(0xFF181B22); // Dark Gunmetal Surface
+  static const Color cardBackground = Color(0xFF1E222B); // Elevated Card Slate
+  static const Color inputBackground = Color(0xFF14171E); // Dark Input Fill
 
-  // Background Colors
-  static const Color appBackGround = Color(0xFFF8FAFC);
-  static const Color surfaceColor = Color(0xFFFFFFFF);
-  static const Color cardBackground = Color(0xFFFFFFFF);
+  // Text Colors for Dark Theme
+  static const Color textPrimary = Color(0xFFF3F4F6); // Crisp Off-White
+  static const Color textSecondary = Color(0xFF9CA3AF); // Muted Metallic Grey
+  static const Color textLight = Color(0xFF6B7280);
+  static const Color greyText = Color(0xFF9CA3AF);
 
-  // Text Colors
-  static const Color textPrimary = Color(0xFF1E293B);
-  static const Color textSecondary = Color(0xFF64748B);
-  static const Color textLight = Color(0xFF94A3B8);
-  static const Color greyText = Color(0xFF64748B);
+  // Borders, Inputs & Shadows
+  static const Color dividerColor = Color(0xFF2A2F3D);
+  static const Color inputBorder = Color(0xFF323846);
+  static const Color inputFocusBorder = Color(0xFFFF5722);
+  static const Color shadowColor = Color(0x66000000);
 
-  // Neutral Colors
+  // Buttons & Gradients
+  static const Color buttonGradientStart = Color(0xFFFF5722);
+  static const Color buttonGradientEnd = Color(0xFFD84315);
+  static const Color buttonDisabledColor = Color(0xFF374151);
+
+  // Legacy & Utility Greys (used by shared widgets)
+  static const Color colorLightGrey = Color(0xFF2D3340);
+  static const Color colorGrey = Color(0xFF6B7280);
+  static const Color color858485 = Color(0xFF9CA3AF);
+  static const Color colorD9D9D9 = Color(0xFF323846);
+
+  // Standard Status Colors
   static const Color colorWhite = Color(0xFFFFFFFF);
-  static const Color colorBlack = Color(0xFF0F172A);
-  static const Color colorTransparent = Color(0x00000000);
-  static const Color colorLightGrey = Color(0xFFE2E8F0);
-  static const Color colorGrey = Color(0xFFCBD5E1);
-  static const Color colorDarkGrey = Color(0xFF475569);
-
-  // Status Colors
+  static const Color colorBlack = Color(0xFF000000);
   static const Color colorRed = Color(0xFFEF4444);
-  static const Color colorGreen = Color(0xFF22C55E);
-  static const Color colorOrange = Color(0xFFF97316);
-  static const Color colorYellow = Color(0xFFEAB308);
-
-  // Additional UI Colors
-  static const Color dividerColor = Color(0xFFE2E8F0);
-  static const Color shadowColor = Color(0x1A000000);
-  static const Color overlayColor = Color(0x80000000);
-
-  // Input field colors
-  static const Color inputBackground = Color(0xFFF1F5F9);
-  static const Color inputBorder = Color(0xFFE2E8F0);
-  static const Color inputFocusBorder = Color(0xFF22C55E);
-
-  // Button colors
-  static const Color buttonDisabledColor = Color(0xFFCBD5E1);
-  static const Color buttonGradientStart = Color(0xFF22C55E);
-
-  // Legacy color mappings for backward compatibility
-  static const Color color858485 = Color(0xFF64748B);
-  static const Color colorD9D9D9 = Color(0xFFE2E8F0);
-  static const Color colorDDF3F2 = Color(0xFFCCFBF1);
-  static const Color color58BCBD = Color(0xFF0D9488);
-  static const Color color263238 = Color(0xFF1E293B);
-  static const Color color4F4F4F = Color(0xFF475569);
-  static const Color color1F2155 = Color(0xFF22C55E);
-  static const Color colorEBF3F3 = Color(0xFFF0FDFA);
-  static const Color color4C4C4C = Color(0xFF475569);
-  static const Color color10100E = Color(0xFF0F172A);
-  static const Color color464646 = Color(0xFF475569);
-  static const Color color9E9E9E = Color(0xFF94A3B8);
-  static const Color colorPlatinumLinear1 = Color(0xFFFAFAFA);
+  static const Color colorTransparent = Colors.transparent;
 }

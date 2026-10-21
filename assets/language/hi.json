@@ -1,6 +1,6 @@
 {
-  "APP_NAME": "किराना स्टोर",
-  "APP_SUBTITLE": "15 मिनट में ताज़ा किराना आपके घर तक",
+  "APP_NAME": "गियर अप गैरेज",
+  "APP_SUBTITLE": "पेशेवर राइडिंग गियर और एक्सेसरीज़",
   "LOGIN": "लॉग इन",
   "USERNAME": "ईमेल या फोन",
   "PASSWORD": "पासवर्ड",
@@ -132,5 +132,6 @@
   "REGISTRATION_SUCCESS": "खाता सफलतापूर्वक पंजीकृत हो गया!",
   "CHANGE_LANGUAGE": "भाषा बदलें",
   "SELECT_LANGUAGE": "भाषा चुनें",
-  "CHOOSE_LANGUAGE_SUB": "अपनी पसंदीदा भाषा चुनें"
+  "CHOOSE_LANGUAGE_SUB": "अपनी पसंदीदा भाषा चुनें",
+  "DELIVERY_HEADER": "पेशेवर राइडिंग विभाग"
 }

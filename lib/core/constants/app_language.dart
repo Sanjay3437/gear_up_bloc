@@ -36,6 +36,7 @@ class AppLanguage {
   static Future<void> changeLanguage(String languageCode) async {
     final locale = Locale(languageCode);
     await Get.updateLocale(locale);
+    Get.forceAppUpdate();
     try {
       final hive = injector<HiveService>();
       await hive.set(languageDbKey, languageCode);

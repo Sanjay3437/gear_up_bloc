@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gear_up_bloc/core/constants/routes.dart';
+import 'package:gear_up_bloc/features/catalog/presentation/pages/catalog_home_page.dart';
+import 'package:gear_up_bloc/features/catalog/presentation/pages/product_detail_page.dart';
 import 'package:gear_up_bloc/features/login/presentation/pages/login.dart';
 import 'package:gear_up_bloc/features/login/presentation/pages/sign_up_page.dart';
 import 'package:gear_up_bloc/features/splash/presentation/pages/splash_screen.dart';
@@ -32,9 +34,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RoutesName.homePage,
       builder: (BuildContext context, GoRouterState state) {
-        return const Scaffold(
-          body: Center(child: Text('GearUp Catalog Home Coming Next!')),
-        );
+        return const CatalogHomePage();
+      },
+    ),
+    GoRoute(
+      path: RoutesName.productDetail,
+      builder: (BuildContext context, GoRouterState state) {
+        final productId = state.extra as String? ?? '';
+        return ProductDetailPage(productId: productId);
       },
     ),
   ],

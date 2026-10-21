@@ -4,12 +4,16 @@ import 'package:gear_up_bloc/core/database/secure_storage_service.dart';
 import 'package:gear_up_bloc/core/network/connection/network_info.dart';
 import 'package:gear_up_bloc/core/network/dio_network_service.dart';
 import 'package:gear_up_bloc/core/network/network_service.dart';
+import 'package:gear_up_bloc/features/catalog/data/data_source/catalog_remote_data_source.dart';
+import 'package:gear_up_bloc/features/catalog/data/repositories/catalog_repository_impl.dart';
+import 'package:gear_up_bloc/features/catalog/domain/repositories/catalog_repository.dart';
+import 'package:gear_up_bloc/features/catalog/domain/use_case/get_catalog_items_use_case.dart';
+import 'package:gear_up_bloc/features/catalog/domain/use_case/get_product_detail_use_case.dart';
 import 'package:gear_up_bloc/features/login/data/data_source/login_remote_data_source.dart';
 import 'package:gear_up_bloc/features/login/data/repositories/login_repository_impl.dart';
 import 'package:gear_up_bloc/features/login/domain/repositories/login_repository.dart';
 import 'package:gear_up_bloc/features/login/domain/use_case/login_use_case.dart';
 import 'package:get_it/get_it.dart';
-
 
 final injector = GetIt.instance;
 
@@ -19,7 +23,6 @@ Future<void> init() async {
   injector.registerLazySingleton<SecureStorageService>(() => secureStorage);
 
   final hiveService = HiveService(secureStorage);
-  // await hiveService.init();
   injector.registerLazySingleton<HiveService>(() => hiveService);
 
   injector.registerLazySingleton<NetworkService>(DioNetworkService.new);
@@ -29,16 +32,27 @@ Future<void> init() async {
   );
 
   /// --- Feature 1: Auth / Login ---
-  // Data Source
   injector.registerLazySingleton<LoginRemoteDataSource>(
         () => LoginRemoteDataSourceImpl(injector()),
   );
-  // Repository
   injector.registerLazySingleton<LoginRepository>(
         () => LoginRepositoryImpl(injector()),
   );
-  // Use Case
   injector.registerLazySingleton<LoginUseCases>(
         () => LoginUseCases(injector()),
+  );
+
+  /// --- Feature 2: Catalog ---
+  injector.registerLazySingleton<CatalogRemoteDataSource>(
+        () => CatalogRemoteDataSourceImpl(injector()),
+  );
+  injector.registerLazySingleton<CatalogRepository>(
+        () => CatalogRepositoryImpl(injector()),
+  );
+  injector.registerLazySingleton<GetCatalogItemsUseCase>(
+        () => GetCatalogItemsUseCase(injector()),
+  );
+  injector.registerLazySingleton<GetProductDetailUseCase>(
+        () => GetProductDetailUseCase(injector()),
   );
 }

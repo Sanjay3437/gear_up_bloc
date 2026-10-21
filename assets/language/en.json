@@ -1,6 +1,6 @@
 {
-  "APP_NAME": "Grocery Store",
-  "APP_SUBTITLE": "Fresh groceries delivered in 15 mins",
+  "APP_NAME": "GEAR UP GARAGE",
+  "APP_SUBTITLE": "Pro Riding Gear & Accessories",
   "LOGIN": "Login",
   "USERNAME": "Email or Phone",
   "PASSWORD": "Password",
@@ -132,5 +132,6 @@
   "REGISTRATION_SUCCESS": "Account registered successfully!",
   "CHANGE_LANGUAGE": "Change Language",
   "SELECT_LANGUAGE": "Select Language",
-  "CHOOSE_LANGUAGE_SUB": "Choose your preferred language"
+  "CHOOSE_LANGUAGE_SUB": "Choose your preferred language",
+  "DELIVERY_HEADER": "PRO RIDING DIVISION"
 }
